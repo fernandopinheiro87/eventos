@@ -33,14 +33,31 @@
                             <a href="/" class="nav-link">Eventos</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/events/create" class="nav-link">Criar eventos</a>
+                            <a href="/events2/create" class="nav-link">Criar eventos</a>
+                        </li>
+                        <!-- guest é uma diretiva do blade que diz que é para mostrar essas opções se tiver autenticado-->
+                        @auth
+                        <li class="nav-item">
+                            <a href="/dashboard" class="nav-link">Meus dados</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/" class="nav-link">Entrar</a>
+                            <form action="/logout" method="POST" >
+                                <!-- o event.preventdefault fala que eu não quero que execute o evento normal da tag a-->
+                                @csrf
+                                <a href="/logout" class="nav-link" onclick="event.preventDefault();
+                                                                            this.closest('form').submit()">Sair</a>
+                            </form>
+                        </li>
+                        @endauth
+                        <!-- guest é uma diretiva do blade que diz que é para sumir essas opções se tiver autenticado-->
+                        @guest
+                        <li class="nav-item">
+                            <a href="/login" class="nav-link">Entrar</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/" class="nav-link">Cadastrar</a>
+                            <a href="/register" class="nav-link">Cadastrar</a>
                         </li>
+                        @endguest
                     </ul>
                 </div>
             </nav>

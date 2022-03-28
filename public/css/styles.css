@@ -97,7 +97,7 @@ header{
 #events-container .subtitle{
 
     color: #757575;
-    margin-bottom: 30px;;
+    margin-bottom: 30px;
 }
 
 #cards-container{
@@ -105,11 +105,11 @@ header{
 }
 
 #events-container card{
-    flex: 1 1 0;
+    flex: 1 1 24%; /*24 por cendo de largura*/
     max-width: 25%;
     border-radius: 10px;
     padding: 0;
-    margin: 5px;
+    margin: .5%;
 }
 
 #events-container img{
@@ -138,6 +138,69 @@ header{
     color: #757575;
 }
 
+/*Event page */
+
+#image-container,
+#info-container{
+    margin-top: 30px;
+}
+
+#image-container img{
+    border-radius: 10px; 
+}
+
+#info-container h1{
+    font-size:36px;
+    font-weight:900;
+}
+
+#info-container p{
+    margin:0;
+    font-size: 14px;
+    display: flex;
+}
+
+#info-container h3,
+#descritpion-container h3{
+    font-size:20px;
+    font-weight: bold;
+}
+
+#info-container ion-icon{
+    font-size:20px;
+    color: #f2a340;
+    margin-right: 5px;
+}
+
+#info-container #event-submit{
+    margin: 20px 0;
+}
+
+
+/*Event create page*/
+#event-create-container{
+    padding: 30px;
+}
+
+#event-create-container label{
+    font-weight: bold;
+}
+
+#event-create-container input,
+#event-create-container select,
+#event-create-container area{
+    font-size: 12px;
+}
+
+#items-list{
+    list-style: none;
+    padding-left: 0;
+}
+
+#items-list li{
+    display: flex;
+}
+
 /*footer*/
 footer{
     text-align: center;
@@ -154,17 +217,3 @@ footer p{
     margin-bottom: 0;
 }
 
-/*Event create page*/
-#event-create-container{
-    padding: 30px;
-}
-
-#event-create-container label{
-    font-weight: bold;
-}
-
-#event-create-container input,
-#event-create-container select,
-#event-create-container area{
-    font-size: 12px;
-}
