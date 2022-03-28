@@ -16,4 +16,13 @@ class Event extends Model
 
     //dizer para o laravel que esse campo é tipo date
     protected $dates = ['date'];
+
+    //aqui é preciso para dizer  que tudo que foi enviado pelo post pode ser atualizado sem restrição.
+    // Se eu colocasse algum campo no array, o laravel não ia deixar atualizar esse campo
+    protected $guarded = [];
+
+    public function user(){
+        //um user  pertence a um usuario
+        return $this->belongsTo('App\Models\User');
+    }
 }

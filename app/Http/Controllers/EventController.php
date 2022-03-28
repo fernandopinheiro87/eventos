@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Event;
+use App\Models\User;
 
 class EventController extends Controller
 {
@@ -66,6 +67,9 @@ class EventController extends Controller
             $event->image = $imageName;
         }
 
+        $user = auth()->user();        
+        $event->user_id = $user->id;
+
         $event->save();
 
         return redirect('/')->with('msg', 'Evento criado com sucesso');
@@ -73,7 +77,57 @@ class EventController extends Controller
 
     public function show($id){
         $event = Event::findOrFail($id);
-        return view('events.show',  ['event' =>$event]);
+
+        $eventOwner = User::where('id', $event->user_id)->first()->toArray();
+
+        return view('events.show',  ['event' =>$event, 'eventOwner' => $eventOwner]);
+    }
+
+    public function dashboard(){
+
+        $user = auth()->user();
+
+        $events = $user->events;
+
+        return view('events.dashboard', ['events' => $events]);
+    }
+
+    public function destroy($id){
+
+        Event::findOrFail($id)->delete();
+        return redirect('/dashboard')->with('msg', 'Evento excluido com sucesso');
+    }
+
+    public function edit($id){
+
+        $event = Event::findOrFail($id);
+        
+        return view('events.edit', ['event' => $event]);
+    }
+
+    public function update(Request $request){
+
+        $data = $request->all();
+
+        //image upload
+        if($request->hasfile('image') && $request->file('image')->isValid()){
+            echo "passou aqui 1";
+            $requestImage = $request->image;
+            $extension = $requestImage->extension();
+            echo "passou aqui 2";
+            //monta a imagem
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            //faz o upload da imagem
+            $requestImage -> move(public_path('img/events'),$imageName);
+            echo "passou aqui 3";
+            //salva o caminho da imagem
+            $data['image'] = $imageName;
+        }
+
+        $event = Event::findOrFail($request->id)->update($data); 
+        
+        return redirect('/dashboard')->with('msg', 'Evento editado com sucesso');
     }
 
 }
