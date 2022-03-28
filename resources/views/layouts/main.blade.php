@@ -21,12 +21,11 @@
     </head>
     <body >
         {{-- isto é um comentario em blade.Nao renderiza na view --}}
-
         <header>
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="collapse navbar-collapse" id="navbar">
                     <a href="/" class="navbar-bran">
-                        <img src="/img/logo.png" alt="HDC Events">
+                        <img src="/img/logo.png" style="width: 250px;" alt="HDC Events">
                     </a>
                     <ul class="navbar-nav">
                         <li class="nav-item">

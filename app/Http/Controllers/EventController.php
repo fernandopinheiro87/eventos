@@ -72,7 +72,7 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect('/')->with('msg', 'Evento criado com sucesso');
+        return redirect('/dashboard')->with('msg', 'Evento criado com sucesso');
     }
 
     public function show($id){
@@ -125,7 +125,7 @@ class EventController extends Controller
             $data['image'] = $imageName;
         }
 
-        $event = Event::findOrFail($request->id)->update($data); 
+        Event::findOrFail($request->id)->update($data); 
         
         return redirect('/dashboard')->with('msg', 'Evento editado com sucesso');
     }
